@@ -5,24 +5,25 @@ import { Activity } from "../../../app/models/activity";
 interface Props {
     activity: Activity;
     cancelSelectActivity: () => void;
+    editActivity: (id: String) => void;
 }
 
-export default function ActivityDetails({activity, cancelSelectActivity}:Props) {
+export default function ActivityDetails({activity, cancelSelectActivity, editActivity}:Props) {
     return (
         <Card fluid>
             <Image src={`/assets/categoryImages/${activity.category}.jpg`} />
             <Card.Content>
-                <Card.Header>Matthew</Card.Header>
+                <Card.Header>{activity.title}</Card.Header>
                 <Card.Meta>
-                    <span className='date'>Joined in 2015</span>
+                    <span className='date'>{activity.date}</span>
                 </Card.Meta>
                 <Card.Description>
-                    Matthew is a musician living in Nashville.
+                    {activity.description}
                 </Card.Description>
             </Card.Content>
             <Card.Content extra>
                 <Button.Group widths='2'>
-                    <Button basic color='blue' content='Edit' />
+                    <Button onClick={() => editActivity(activity.id)} basic color='blue' content='Edit' />
                     <Button onClick={cancelSelectActivity} basic color='grey' content='Cancel' />
                 </Button.Group>
             </Card.Content>
