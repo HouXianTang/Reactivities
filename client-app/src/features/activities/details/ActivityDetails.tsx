@@ -5,7 +5,7 @@ import { Activity } from "../../../app/models/activity";
 interface Props {
     activity: Activity;
     cancelSelectActivity: () => void;
-    editActivity: (id: String) => void;
+    editActivity: (id: string) => void;
 }
 
 export default function ActivityDetails({activity, cancelSelectActivity, editActivity}:Props) {

@@ -8,22 +8,27 @@ import ActivityForm from "../form/ActivityForm";
 interface Props {
     activities: Activity[];
     selectedActivity: Activity | undefined;
-    selectActivity: (id: String) => void;
+    selectActivity: (id: string) => void;
     cancelSelectActivity: () => void;
-    editActivity: (id: String) => void;
+    editActivity: (id: string) => void;
     closeEditActivity: () => void;
     isEditMode: boolean;
     createOrEdit: (activity: Activity) => void;
     deleteActivity: (id: string) => void;
+    submitting: boolean;
 }
 
 export default function ActivityDashboard({activities, selectedActivity,
       selectActivity, cancelSelectActivity, editActivity, closeEditActivity,
-      isEditMode, createOrEdit, deleteActivity}: Props) {
+      isEditMode, createOrEdit, deleteActivity, submitting}: Props) {
     return (
         <Grid>
             <Grid.Column width='10'>
-                <ActivityList activities={activities} selectActivity={selectActivity} deleteActivity={deleteActivity}/>
+                <ActivityList 
+                activities={activities} 
+                selectActivity={selectActivity} 
+                deleteActivity={deleteActivity} 
+                submitting={submitting}/>
             </Grid.Column>
             <Grid.Column width='6'>
                 { selectedActivity && !isEditMode &&
@@ -36,6 +41,7 @@ export default function ActivityDashboard({activities, selectedActivity,
                 closeEditActivity={closeEditActivity}
                 activity={selectedActivity} 
                 createOrEdit={createOrEdit}
+                submitting={submitting}
                 /> }
             </Grid.Column>
         </Grid>
