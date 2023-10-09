@@ -1,15 +1,15 @@
 import React, { SyntheticEvent, useState } from "react";
 import { Activity } from "../../../app/models/activity";
 import { Segment, Item, Button, Label } from "semantic-ui-react";
+import { useStore } from "../../../app/stores/store";
 
 interface Props {
     activities: Activity[];
-    selectActivity: (id: string) => void;
     deleteActivity: (id: string) => void;
     submitting: boolean;
 }
 
-export default function ActivityList({activities, selectActivity, deleteActivity, submitting}: Props) {
+export default function ActivityList({activities, deleteActivity, submitting}: Props) {
 
     const [target, setTarget] = useState(''); //To target the delete button that was clicked, so that not all buttons turn into loading upon clicking
 
@@ -18,6 +18,8 @@ export default function ActivityList({activities, selectActivity, deleteActivity
         deleteActivity(id);
     }
     
+    const {activityStore} = useStore();
+
     return (
         <Segment>
             <Item.Group divided>
@@ -31,7 +33,7 @@ export default function ActivityList({activities, selectActivity, deleteActivity
                                 <div>{activity.city}, {activity.venue}</div>
                             </Item.Description>
                             <Item.Extra>
-                                <Button floated="right" content="View" color="blue" onClick={() => selectActivity(activity.id)}/>
+                                <Button floated="right" content="View" color="blue" onClick={() => activityStore.selectActivity(activity.id)}/>
                                 <Button 
                                 name={activity.id}
                                 floated="right" 
