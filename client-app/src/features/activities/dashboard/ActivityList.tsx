@@ -2,14 +2,13 @@ import React, { SyntheticEvent, useState } from "react";
 import { Activity } from "../../../app/models/activity";
 import { Segment, Item, Button, Label } from "semantic-ui-react";
 import { useStore } from "../../../app/stores/store";
+import { observer } from "mobx-react-lite";
 
-interface Props {
-    activities: Activity[];
-    deleteActivity: (id: string) => void;
-    submitting: boolean;
-}
+export default observer (function ActivityList() {
 
-export default function ActivityList({activities, deleteActivity, submitting}: Props) {
+    const {activityStore} = useStore();
+
+    const {activitiesByDate, loading, deleteActivity} = activityStore;
 
     const [target, setTarget] = useState(''); //To target the delete button that was clicked, so that not all buttons turn into loading upon clicking
 
@@ -17,13 +16,11 @@ export default function ActivityList({activities, deleteActivity, submitting}: P
         setTarget(event.currentTarget.name),
         deleteActivity(id);
     }
-    
-    const {activityStore} = useStore();
 
     return (
         <Segment>
             <Item.Group divided>
-                {activities.map(activity => (
+                {activitiesByDate.map(activity => (
                     <Item key={activity.id}>
                         <Item.Content>
                             <Item.Header as='a'>{activity.title}</Item.Header>
@@ -40,7 +37,7 @@ export default function ActivityList({activities, deleteActivity, submitting}: P
                                 content="Delete" 
                                 color="red" 
                                 onClick={event => handleActivityDelete(event, activity.id)}
-                                loading={submitting && target === activity.id}/>
+                                loading={loading && target === activity.id}/>
                                 <Label basic content={activity.category} />
                             </Item.Extra>
                         </Item.Content>
@@ -50,4 +47,4 @@ export default function ActivityList({activities, deleteActivity, submitting}: P
             </Item.Group>
         </Segment>
     );
-}
+});
