@@ -1,4 +1,3 @@
-using System.Linq;
 using Application.Core;
 using Domain;
 using MediatR;
