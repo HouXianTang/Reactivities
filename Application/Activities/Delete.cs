@@ -17,7 +17,6 @@ namespace Application.Activities
             public Handler(DataContext context)
             {
                 _context = context;
-                
             }
 
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)

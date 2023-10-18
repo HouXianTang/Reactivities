@@ -21,7 +21,7 @@ export default observer(function ActivityList() {
                             {group}
                         </Header>
                         {activities.map(activity => (
-                            <ActivityListItem activity={activity} />
+                            <ActivityListItem activity={activity} key={activity.id}/>
                         )
                         )}
                     </Fragment>
