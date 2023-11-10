@@ -4,6 +4,8 @@ using Application.Core;
 using Application.Activities;
 using FluentValidation.AspNetCore;
 using FluentValidation;
+using Application.Interfaces;
+using Infrastructure.Security;
 namespace API.Extensions
 {
     public static class ApplicationServiceExtensions
@@ -30,6 +32,10 @@ namespace API.Extensions
             services.AddAutoMapper(typeof(MappingProfiles).Assembly);
             services.AddFluentValidationAutoValidation();
             services.AddValidatorsFromAssemblyContaining<Create>();
+            services.AddHttpContextAccessor();
+
+            // This inject UserAcessor into application handler
+            services.AddScoped<IUserAccessor, UserAccessor>();
 
             return services;
         }
