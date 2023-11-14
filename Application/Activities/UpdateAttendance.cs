@@ -1,6 +1,7 @@
 
 using Application.Core;
 using Application.Interfaces;
+using Domain;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
@@ -36,6 +37,8 @@ namespace Application.Activities
                 var user = await _context.Users.FirstOrDefaultAsync(x => 
                     x.UserName == _userAccessor.GetUsername());
 
+                if (user == null) return null;
+
                 var hostUsername = activity.Attendees.FirstOrDefault(x => x.IsHost)?.AppUser?.UserName;
 
                 var attendance = activity.Attendees.FirstOrDefault(x => x.AppUser.UserName == user.UserName);
@@ -52,7 +55,7 @@ namespace Application.Activities
 
                 if (attendance == null)
                 {
-                    attendance = new Domain.ActivityAttendee
+                    attendance = new ActivityAttendee
                     {
                         AppUser = user,
                         Activity = activity,
