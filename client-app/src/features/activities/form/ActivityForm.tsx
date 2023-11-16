@@ -55,7 +55,7 @@ export default observer(function ActivityForm() {
             updateActivity(activity).then(() => navigate(`/activities/${activity.id}`));
         };
     }
-
+''
     if (loadingInitial) return <LoadingComponent content='Loading...' />
 
     return (

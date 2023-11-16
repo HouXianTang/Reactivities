@@ -12,6 +12,8 @@ namespace Persistence
         public DbSet<Activity> Activities { get; set; }
         public DbSet<ActivityAttendee> ActivityAttendees { get; set; }
 
+        public DbSet<Photo> Photos { get; set; }
+
         /** 
         OnModelCreating is called when the model for a derived context has been initialized, 
         but before the model has been locked down and used to initialize the context. 
@@ -23,7 +25,7 @@ namespace Persistence
             base.OnModelCreating(builder);
 
             // Form a primary key in ActivityAttendees table
-            builder.Entity<ActivityAttendee>(x => x.HasKey(aa => new {aa.ActivityId, aa.AppUserId}));
+            builder.Entity<ActivityAttendee>(x => x.HasKey(aa => new { aa.ActivityId, aa.AppUserId }));
 
             builder.Entity<ActivityAttendee>()
                 .HasOne(u => u.AppUser)

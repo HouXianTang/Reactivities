@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using Application.Core;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
