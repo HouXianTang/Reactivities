@@ -25,13 +25,13 @@ axios.interceptors.request.use((config) => {
 axios.interceptors.response.use(async response => {
     await sleep(1000);
     return response;
-},(error: AxiosError) => {
-    const {data, status, config} = error.response as AxiosResponse;
+}, (error: AxiosError) => {
+    const { data, status, config } = error.response as AxiosResponse;
     switch (status) {
-        case 400: 
-        if(config.method === 'get' && Object.prototype.hasOwnProperty.call(data.errors, 'id')) {
-            router.navigate('/not-found');
-        }
+        case 400:
+            if (config.method === 'get' && Object.prototype.hasOwnProperty.call(data.errors, 'id')) {
+                router.navigate('/not-found');
+            }
             if (data.errors) {
                 const modalStateErrors = [];
                 for (const key in data.errors) {
@@ -41,22 +41,21 @@ axios.interceptors.response.use(async response => {
                 }
                 throw modalStateErrors.flat();
             }
-            else
-            {
-                toast.error(data); 
-            } 
+            else {
+                toast.error(data);
+            }
             break;
-        case 401: 
+        case 401:
             toast.error('Unauthorised');
             break;
-        case 403: 
+        case 403:
             toast.error('Forbidden');
             break;
-        case 404: 
+        case 404:
             router.navigate('/not-found');
-            toast.error('Not Found') ;
+            toast.error('Not Found');
             break;
-        case 500: 
+        case 500:
             store.commonStore.setServerError(data);
             router.navigate('/server-error');
             break;
@@ -94,12 +93,15 @@ const Profiles = {
         let formData = new FormData();
         formData.append('File', file);
         return axios.post<Photo>('photos', formData, {
-            headers: {'Content-Type' : 'multipart/form-data'}
-        }    
-    )         
+            headers: { 'Content-Type': 'multipart/form-data' }
+        }
+        )
     },
     setMainPhoto: (id: string) => requests.post(`/photos/${id}/setMain`, {}),
-    deletePhoto: (id: string) => requests.del(`/photos/${id}`)
+    deletePhoto: (id: string) => requests.del(`/photos/${id}`),
+    //Use Partial<Profile> because only name and bio in Profile is updated
+    updateProfile: (profile: Partial<Profile>) => requests.put(`/profiles`,
+        profile)
 }
 
 const agent = {
