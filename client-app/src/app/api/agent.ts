@@ -101,8 +101,12 @@ const Profiles = {
     deletePhoto: (id: string) => requests.del(`/photos/${id}`),
     //Use Partial<Profile> because only name and bio in Profile is updated
     updateProfile: (profile: Partial<Profile>) => requests.put(`/profiles`,
-        profile)
-}
+        profile),
+    updateFollowing: (username: string) => requests.post(`/follow/${username}`, {}),
+    listFollowings: (username: string, predicate: string) =>
+        requests.get<Profile[]>(`/follow/${username}?predicate=${predicate}`)
+
+      }
 
 const agent = {
     Activities,
