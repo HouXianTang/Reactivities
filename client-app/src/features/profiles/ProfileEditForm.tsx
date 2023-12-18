@@ -1,6 +1,6 @@
 import { Form, Formik } from "formik";
 import { observer } from "mobx-react-lite";
-import { Button, TextArea } from "semantic-ui-react";
+import { Button } from "semantic-ui-react";
 import MyTextInput from "../../app/common/form/MyTextInput";
 import { useStore } from "../../app/stores/store";
 import * as Yup from 'yup';
@@ -38,9 +38,9 @@ export default observer(function ProfileEditForm({ setEditMode }: Props) {
                         content='Update profile'
                         floated='right'
                         disabled={!isValid || !dirty}
-                    /> 
+                    />
                 </Form>
-            )} 
+            )}
         </Formik>
     )
 })

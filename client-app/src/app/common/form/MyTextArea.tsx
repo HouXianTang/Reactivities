@@ -1,5 +1,4 @@
 import { useField } from "formik";
-import React from "react";
 import { Label } from "semantic-ui-react";
 import Form from "semantic-ui-react/dist/commonjs/collections/Form";
 

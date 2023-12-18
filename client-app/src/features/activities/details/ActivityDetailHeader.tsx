@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react-lite';
-import React, { Fragment } from 'react'
+import { Fragment } from 'react'
 import { Button, Header, Item, Segment, Image, Label } from 'semantic-ui-react'
 import { Activity } from "../../../app/models/activity";
 import { Link } from 'react-router-dom';
@@ -67,7 +67,7 @@ export default observer(function ActivityDetailHeader({ activity }: Props) {
                 ) : activity.isGoing ? (
                     <Button loading={loading} onClick={updateAttendence}>Cancel attendance</Button>
                 ) : (
-                    <Button disabled={activity.isCancelled} loading={loading} onClick={updateAttendence} 
+                    <Button disabled={activity.isCancelled} loading={loading} onClick={updateAttendence}
                         color='teal'>Join Activity</Button>
                 )}
             </Segment>

@@ -1,5 +1,5 @@
-import React, { Fragment, useEffect, useState } from 'react'
-import { Button, Grid, Header, Image } from 'semantic-ui-react'
+import { Fragment, useEffect, useState } from 'react'
+import { Button, Grid, Header } from 'semantic-ui-react'
 import PhotoWidgetDropzone from './PhotoWidgetDropzone'
 import PhotoWidgetCropper from './PhotoWidgetCropper';
 
@@ -8,7 +8,7 @@ interface Props {
     uploadPhoto: (file: Blob) => void;
 }
 
-export default function PhotoUploadWidget({loading, uploadPhoto}: Props) {
+export default function PhotoUploadWidget({ loading, uploadPhoto }: Props) {
     const [files, setFiles] = useState<any>([]);
     const [cropper, setCropper] = useState<Cropper>();
 
@@ -51,8 +51,8 @@ export default function PhotoUploadWidget({loading, uploadPhoto}: Props) {
                     <Fragment>
                         <div className='img-preview' style={{ minHeight: 200, overflow: 'hidden' }} />
                         <Button.Group widths={2}>
-                            <Button onClick={onCrop} positive icon='check' loading={loading}/>
-                            <Button onClick={() => setFiles([])} icon='close' disabled={loading}/>
+                            <Button onClick={onCrop} positive icon='check' loading={loading} />
+                            <Button onClick={() => setFiles([])} icon='close' disabled={loading} />
                         </Button.Group>
                     </Fragment>
                 }

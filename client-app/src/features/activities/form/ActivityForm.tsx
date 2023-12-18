@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Segment, Button, Header } from 'semantic-ui-react';
 import { useStore } from '../../../app/stores/store';
 import { observer } from 'mobx-react-lite';
@@ -55,18 +55,18 @@ export default observer(function ActivityForm() {
             updateActivity(activity).then(() => navigate(`/activities/${activity.id}`));
         };
     }
-''
+    ''
     if (loadingInitial) return <LoadingComponent content='Loading...' />
 
     return (
         <Segment clearing>
-            <Header content='Activity Details' sub color='teal'/>
-            <Formik 
-            validationSchema={validationSchema}
-            enableReinitialize initialValues={activity} onSubmit={values => handleFormSubmit(values)}>
+            <Header content='Activity Details' sub color='teal' />
+            <Formik
+                validationSchema={validationSchema}
+                enableReinitialize initialValues={activity} onSubmit={values => handleFormSubmit(values)}>
                 {({ handleSubmit, isValid, isSubmitting, dirty }) => (
                     <Form className='ui form' onSubmit={handleSubmit} autoComplete='off'>
-                        <MyTextInput name='title' placeholder='Title'/>
+                        <MyTextInput name='title' placeholder='Title' />
                         <MyTextArea placeholder='Description' name='description' rows={3} />
                         <MySelectInput
                             placeholder='Category'
@@ -78,16 +78,16 @@ export default observer(function ActivityForm() {
                             showTimeSelect
                             timeCaption='time'
                             dateFormat='MMMM d, yyyy h:mm aa' />
-                        <Header content='Location Details' sub color='teal'/>
+                        <Header content='Location Details' sub color='teal' />
                         <MyTextInput placeholder='City' name='city' />
                         <MyTextInput placeholder='Venue' name='venue' />
-                        <Button 
-                        floated='right' 
-                        positive 
-                        type='submit' 
-                        content='Submit' 
-                        loading={isSubmitting}
-                        disabled={isSubmitting || !dirty || !isValid} />
+                        <Button
+                            floated='right'
+                            positive
+                            type='submit'
+                            content='Submit'
+                            loading={isSubmitting}
+                            disabled={isSubmitting || !dirty || !isValid} />
                         <Button as={Link} to={'/activities'} floated='right' type='button' content='Cancel' />
                     </Form>
                 )}

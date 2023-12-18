@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Grid } from "semantic-ui-react";
 import ActivityList from "./ActivityList";
 import { useStore } from "../../../app/stores/store";
@@ -32,7 +32,7 @@ export default observer(function ActivityDashboard() {
             <Grid.Column width='10'>
                 <ActivityList />
                 <Button
-                    floated='right'
+                    style={{ width: '100%' }}
                     content='More...'
                     positive
                     onClick={handleGetNext}

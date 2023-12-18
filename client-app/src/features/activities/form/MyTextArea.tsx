@@ -1,5 +1,4 @@
 import { useField } from "formik";
-import React from "react";
 import { Label } from "semantic-ui-react";
 import Form from "semantic-ui-react/dist/commonjs/collections/Form";
 
@@ -11,7 +10,7 @@ interface Props {
 }
 
 export default function MyTextArea(props: Props) {
-    const[field, meta] = useField(props.name);
+    const [field, meta] = useField(props.name);
 
     return (
         <Form.Field error={meta.touched && !!meta.error}>

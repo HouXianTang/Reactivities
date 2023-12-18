@@ -13,7 +13,7 @@ const sleep = (delay: number) => {
     })
 }; // Set loading sleep timer
 
-axios.defaults.baseURL = 'http://localhost:5000/api';
+axios.defaults.baseURL = import.meta.env.VITE_API_URL;
 
 // Intercept the request and set the token to the authorization header. This can prevent the lost 
 // of token after refreshing the page.
@@ -24,7 +24,7 @@ axios.interceptors.request.use((config) => {
 })
 
 axios.interceptors.response.use(async response => {
-    await sleep(1000);
+    if (import.meta.env.DEV) await sleep(1000);
     const pagination = response.headers['pagination'];
     if (pagination) {
         response.data = new PaginatedResult(response.data, JSON.parse(pagination));

@@ -1,4 +1,3 @@
-import React from 'react'
 import { Photo, Profile, UserActivity } from '../models/profile';
 import { makeAutoObservable, reaction, runInAction } from 'mobx';
 import agent from '../api/agent';

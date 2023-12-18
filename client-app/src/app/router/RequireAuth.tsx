@@ -1,0 +1,17 @@
+import { Navigate, Outlet, useLocation } from "react-router-dom";
+import { useStore } from "../stores/store"
+
+
+export default function RequireAuth() {
+    const { userStore: {isLoggedIn} } = useStore();
+    const location = useLocation();
+
+    if (!isLoggedIn) {
+        return <Navigate to='/' state={{from: location}} />
+    }
+
+    return (
+        // Render child root's element if there is none
+        <Outlet />
+    )
+}
