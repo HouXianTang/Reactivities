@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Button, Grid } from "semantic-ui-react";
+import { Fragment, useEffect, useState } from "react";
+import { Button, Container, Grid } from "semantic-ui-react";
 import ActivityList from "./ActivityList";
 import { useStore } from "../../../app/stores/store";
 import { observer } from "mobx-react-lite";
@@ -30,15 +30,23 @@ export default observer(function ActivityDashboard() {
     return (
         <Grid>
             <Grid.Column width='10'>
-                <ActivityList />
-                <Button
-                    style={{ width: '100%' }}
-                    content='More...'
-                    positive
-                    onClick={handleGetNext}
-                    loading={loadingNext}
-                    disabled={pagination?.totalPages === pagination?.currentPage}
-                />
+                {pagination?.totalItems === 0 ?
+                    <Container textAlign="center" style={{ "margin": "30%", "font-size":"18px"}}
+                    >No Ongoing Activity At The Moment</Container> :
+                    <Fragment>
+                        <ActivityList />
+                        <Button
+                            style={{ hidden: "hidden" }}
+                            fluid
+                            content='More...'
+                            positive
+                            onClick={handleGetNext}
+                            loading={loadingNext}
+                            disabled={pagination?.totalPages === pagination?.currentPage
+                                || pagination?.totalItems === 0}
+                        />
+                    </Fragment>
+                }
             </Grid.Column>
             <Grid.Column width='6'>
                 <ActivityFilters />
