@@ -12,7 +12,7 @@ primary_region = "sin"
 [env]
   ASPNETCORE_URLS="http://+:8080"
   Cloudinary__CloudName="dq97e8voy"
-  Cloudinary__AoiKey="823339294265466"
+  Cloudinary__ApiKey="823339294265466"
 
 [http_service]
   internal_port = 8080
