@@ -8,3 +8,9 @@ Libraries used in the project:
 4. SignalR : A JavaScript and TypeScript client for ASP.NET Core and Azure SignalR Service that allows real-time communication between server and client.
 5. Semanti UI : Most responsive layouts in this project were built using this library.
 6. Yup : Employs schema-based approach to validate input data against the defined rules.
+
+Database used:
+-PostgreSQL
+
+Cloud Storage used (to save images):
+-Cloudinary
