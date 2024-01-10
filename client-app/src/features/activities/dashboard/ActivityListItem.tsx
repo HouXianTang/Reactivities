@@ -23,7 +23,7 @@ export default function ActivityListItem({ activity }: Props) {
                             <Item.Header as={Link} to={`/activities/${activity.id}`}>
                                 {activity.title}
                             </Item.Header>
-                            <Item.Description>Hosted by <Link to={`/profiles/${activity.host?.username}`}>{activity.host?.displayName}</Link></Item.Description>
+                            <Item.Description>Hosted by {" "}<Link to={`/profiles/${activity.host?.username}`}>{activity.host?.displayName}</Link></Item.Description>
                             {activity.isHost && (
                                 <Item.Description>
                                     <Label basic color='orange'>
@@ -44,14 +44,19 @@ export default function ActivityListItem({ activity }: Props) {
             </Segment>
             <Segment>
                 <span>
-                    <Icon name='clock' /> {format(activity.date!, 'dd MMM yyyy h:mm aa')}
-                    <Icon name='marker' /> {activity.venue}
+                    <span style={{ marginRight: 15 }}>
+                        <Icon name='clock' />{" "}
+                        {format(activity.date!, 'dd MMM yyyy h:mm aa')}
+                    </span>
+                    <span>
+                        <Icon name='marker' /> {activity.venue}
+                    </span>
                 </span>
             </Segment>
             <Segment secondary>
                 <ActivityListItemAttendee attendees={activity.attendees!} />
             </Segment>
-            <Segment clearing>
+            <Segment clearing style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <span>{activity.description}</span>
                 <Button
                     as={Link}
@@ -59,6 +64,7 @@ export default function ActivityListItem({ activity }: Props) {
                     color='teal'
                     floated='right'
                     content='View'
+                    style={{ marginLeft: 'auto' }}
                 />
             </Segment>
         </Segment.Group>

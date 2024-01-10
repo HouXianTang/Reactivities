@@ -47,6 +47,11 @@ axios.interceptors.response.use(async response => {
                 }
                 throw modalStateErrors.flat();
             }
+            else if (Array.isArray(data)) {
+                const modalStateErrors: string[] = [];
+                data.map(item => modalStateErrors.push(item.code));
+                throw modalStateErrors.flat();
+            }
             else {
                 toast.error(data);
             }
